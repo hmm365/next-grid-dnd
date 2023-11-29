@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StateType } from '@hmm365/react-gesture-responder';
+import { StateType } from '@partridge1307/react-gesture-responder';
 import { GridSettings } from './grid-types';
 
 export interface GridItemContextType {
@@ -20,4 +20,6 @@ const noop = () => {
   throw Error('GridItem must be used as a child of GridDropZone');
 };
 
-export const GridItemContext = React.createContext<GridItemContextType | null>(null);
+export const GridItemContext = React.createContext<GridItemContextType | null>(
+  null
+);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StateType, useGestureResponder, ResponderEvent } from '@hmm365/react-gesture-responder';
+import { StateType, useGestureResponder, ResponderEvent } from '@partridge1307/react-gesture-responder';
 import { animated, useSpring, to } from 'react-spring';
 import { GridItemContext } from './GridItemContext';
 
@@ -63,7 +63,7 @@ export function GridItem({ children, style, className, ...other }: GridItemProps
   function handleMove(state: StateType, e: ResponderEvent) {
     const x = startCoords.current[0] + state.delta[0];
     const y = startCoords.current[1] + state.delta[1];
-    set({
+    set.start({
       xy: [x, y],
       zIndex: '1',
       immediate: true,

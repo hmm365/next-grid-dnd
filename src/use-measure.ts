@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from 'resize-observer';
 export interface Bounds {
   left: number;
   height: number;
