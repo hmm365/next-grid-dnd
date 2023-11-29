@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  StateType,
-  useGestureResponder,
-  ResponderEvent,
-} from '@partridge1307/react-gesture-responder';
+import { StateType, useGestureResponder, ResponderEvent } from '@hmm365/react-gesture-responder';
 import { animated, useSpring, to } from 'react-spring';
 import { GridItemContext } from './GridItemContext';
 
@@ -11,18 +7,11 @@ interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode | any;
 }
 
-export function GridItem({
-  children,
-  style,
-  className,
-  ...other
-}: GridItemProps) {
+export function GridItem({ children, style, className, ...other }: GridItemProps) {
   const context = React.useContext(GridItemContext);
 
   if (!context) {
-    throw Error(
-      'Unable to find GridItem context. Please ensure that GridItem is used as a child of GridDropZone'
-    );
+    throw Error('Unable to find GridItem context. Please ensure that GridItem is used as a child of GridDropZone');
   }
 
   const {
@@ -141,10 +130,7 @@ export function GridItem({
 
   const props = {
     className:
-      'GridItem' +
-      (isDragging ? ' dragging' : '') +
-      (!!disableDrag ? ' disabled' : '') +
-      className
+      'GridItem' + (isDragging ? ' dragging' : '') + (!!disableDrag ? ' disabled' : '') + className
         ? ` ${className}`
         : '',
     ...bind,
@@ -170,8 +156,7 @@ export function GridItem({
         boxSizing: 'border-box',
         transform: to(
           [styles.xy, styles.scale],
-          (xy: any, s: any) =>
-            `translate3d(${xy[0]}px, ${xy[1]}px, 0) scale(${s})`
+          (xy: any, s: any) => `translate3d(${xy[0]}px, ${xy[1]}px, 0) scale(${s})`
         ),
         ...style,
       }}

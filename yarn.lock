@@ -1173,6 +1173,15 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@hmm365/react-gesture-responder@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/@hmm365/react-gesture-responder/-/react-gesture-responder-0.0.2.tgz"
+  integrity sha512-u7TLiLOHgxr27KKkKYqF6JiPzn/E/ZB7gyLlxIywqCyZh6Revuvsi3hNWcYqLj4q9qMa2fcEi3VE7twTAP2ukQ==
+  dependencies:
+    "@types/react" "^18.2.16"
+    "@types/react-dom" "^18.2.7"
+    tslib "^2.6.1"
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz"
@@ -1351,15 +1360,6 @@
     node-gyp "^9.0.0"
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
-
-"@partridge1307/react-gesture-responder@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/@partridge1307/react-gesture-responder/-/react-gesture-responder-0.0.2.tgz"
-  integrity sha512-u7TLiLOHgxr27KKkKYqF6JiPzn/E/ZB7gyLlxIywqCyZh6Revuvsi3hNWcYqLj4q9qMa2fcEi3VE7twTAP2ukQ==
-  dependencies:
-    "@types/react" "^18.2.16"
-    "@types/react-dom" "^18.2.7"
-    tslib "^2.6.1"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StateType } from '@partridge1307/react-gesture-responder';
+import { StateType } from '@hmm365/react-gesture-responder';
 import { useMeasure } from './use-measure';
 import { GridContext } from './GridContext';
 import { GridSettings, ChildRender } from './grid-types';
@@ -7,8 +7,7 @@ import { swap } from './swap';
 import { getPositionForIndex, getTargetIndex } from './helpers';
 import { GridItemContext } from './GridItemContext';
 
-export interface GridDropZoneProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface GridDropZoneProps extends React.HTMLAttributes<HTMLDivElement> {
   boxesPerRow: number;
   rowHeight: number;
   id: string;
@@ -33,28 +32,15 @@ export function GridDropZone({
   rowHeight,
   ...other
 }: GridDropZoneProps) {
-  const {
-    traverse,
-    startTraverse,
-    endTraverse,
-    register,
-    measureAll,
-    onChange,
-    remove,
-    getActiveDropId,
-  } = React.useContext(GridContext);
+  const { traverse, startTraverse, endTraverse, register, measureAll, onChange, remove, getActiveDropId } =
+    React.useContext(GridContext);
 
   const ref = React.useRef<HTMLDivElement>(null);
   const { bounds, remeasure } = useMeasure(ref);
   const [draggingIndex, setDraggingIndex] = React.useState<number | null>(null);
-  const [placeholder, setPlaceholder] = React.useState<PlaceholderType | null>(
-    null
-  );
+  const [placeholder, setPlaceholder] = React.useState<PlaceholderType | null>(null);
 
-  const traverseIndex =
-    traverse && !traverse.execute && traverse.targetId === id
-      ? traverse.targetIndex
-      : null;
+  const traverseIndex = traverse && !traverse.execute && traverse.targetId === id ? traverse.targetIndex : null;
 
   const grid: GridSettings = {
     columnWidth: bounds.width / boxesPerRow,
@@ -107,24 +93,13 @@ export function GridDropZone({
       {grid.columnWidth === 0
         ? null
         : React.Children.map(children, (child, i) => {
-            const isTraverseTarget =
-              traverse &&
-              traverse.targetId === id &&
-              traverse.targetIndex === i;
+            const isTraverseTarget = traverse && traverse.targetId === id && traverse.targetIndex === i;
 
             const order = placeholder
-              ? swap(
-                  itemsIndexes!,
-                  placeholder.startIndex,
-                  placeholder.targetIndex
-                )
+              ? swap(itemsIndexes!, placeholder.startIndex, placeholder.targetIndex)
               : itemsIndexes!;
 
-            const pos = getPositionForIndex(
-              order.indexOf(i),
-              grid,
-              traverseIndex
-            );
+            const pos = getPositionForIndex(order.indexOf(i), grid, traverseIndex);
 
             /**
              * Handle a child being dragged
@@ -140,11 +115,7 @@ export function GridDropZone({
                 setDraggingIndex(i);
               }
 
-              const targetDropId = getActiveDropId(
-                id,
-                x + grid.columnWidth / 2,
-                y + grid.rowHeight / 2
-              );
+              const targetDropId = getActiveDropId(id, x + grid.columnWidth / 2, y + grid.rowHeight / 2);
 
               if (targetDropId && targetDropId !== id) {
                 startTraverse(id, targetDropId, x, y, i);
@@ -153,21 +124,10 @@ export function GridDropZone({
               }
 
               const targetIndex =
-                targetDropId !== id
-                  ? childCount
-                  : getTargetIndex(
-                      i,
-                      grid,
-                      childCount,
-                      state.delta[0],
-                      state.delta[1]
-                    );
+                targetDropId !== id ? childCount : getTargetIndex(i, grid, childCount, state.delta[0], state.delta[1]);
 
               if (targetIndex !== i) {
-                if (
-                  (placeholder && placeholder.targetIndex !== targetIndex) ||
-                  !placeholder
-                ) {
+                if ((placeholder && placeholder.targetIndex !== targetIndex) || !placeholder) {
                   setPlaceholder({
                     targetIndex,
                     startIndex: i,
@@ -183,31 +143,14 @@ export function GridDropZone({
              */
 
             function onEnd(state: StateType, x: number, y: number) {
-              const targetDropId = getActiveDropId(
-                id,
-                x + grid.columnWidth / 2,
-                y + grid.rowHeight / 2
-              );
+              const targetDropId = getActiveDropId(id, x + grid.columnWidth / 2, y + grid.rowHeight / 2);
 
               const targetIndex =
-                targetDropId !== id
-                  ? childCount
-                  : getTargetIndex(
-                      i,
-                      grid,
-                      childCount,
-                      state.delta[0],
-                      state.delta[1]
-                    );
+                targetDropId !== id ? childCount : getTargetIndex(i, grid, childCount, state.delta[0], state.delta[1]);
 
               // traverse?
               if (traverse) {
-                onChange(
-                  traverse.sourceId,
-                  traverse.sourceIndex,
-                  traverse.targetIndex,
-                  traverse.targetId
-                );
+                onChange(traverse.sourceId, traverse.sourceIndex, traverse.targetIndex, traverse.targetId);
               } else {
                 onChange(id, i, targetIndex);
               }
@@ -226,9 +169,7 @@ export function GridDropZone({
                   top: pos.xy[1],
                   disableDrag,
                   endTraverse,
-                  mountWithTraverseTarget: isTraverseTarget
-                    ? [traverse!.tx, traverse!.ty]
-                    : undefined,
+                  mountWithTraverseTarget: isTraverseTarget ? [traverse!.tx, traverse!.ty] : undefined,
                   left: pos.xy[0],
                   i,
                   onMove,

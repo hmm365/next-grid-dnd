@@ -1,5 +1,5 @@
 {
-  "name": "@partridge1307/react-grid-dnd",
+  "name": "@hmm365/next-grid-dnd",
   "version": "0.0.1",
   "description": "grid style drag and drop for react",
   "main": "cjs/index.js",
@@ -29,7 +29,7 @@
     "url": "https://github.com/bmcmahen/react-grid-dnd.git"
   },
   "peerDependencies": {
-    "@partridge1307/react-gesture-responder": "^0.0.2",
+    "@hmm365/react-gesture-responder": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@partridge1307/react-gesture-responder": "^0.0.2",
+    "@hmm365/react-gesture-responder": "^0.0.2",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-terser": "^0.4.3",
     "babel-core": "^6.26.3",
