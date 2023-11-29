@@ -118,7 +118,7 @@ export function GridItem({ children, style, className, ...other }: GridItemProps
 
   React.useEffect(() => {
     if (!dragging.current) {
-      set({
+      set.start({
         xy: [left, top],
         zIndex: '0',
         opacity: 1,
